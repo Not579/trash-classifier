@@ -7,17 +7,21 @@ from PIL import Image
 st.set_page_config(
     page_title="ระบบ AI คัดแยกขยะรีไซเคิล", 
     page_icon="♻️", 
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="auto" # <-- [จุดแก้ที่ 1: ช่วยพับแถบเมนูด้านซ้ายอัตโนมัติเมื่อเปิดบนมือถือ]
 )
 
-# ตกแต่ง CSS เพิ่มเติม (ขยายความกว้าง Sidebar ให้กว้างขึ้นตามต้องการ)
+# ตกแต่ง CSS เพิ่มเติม 
 st.markdown("""
     <style>
-    /* ขยายความกว้างของ Sidebar ให้กว้างขึ้นเป็น 400px */
-    [data-testid="stSidebar"] {
-        min-width: 400px !important;
-        max-width: 400px !important;
+    /* <-- [จุดแก้ที่ 2: ใช้ @media เพื่อบังคับให้ Sidebar กว้าง 400px "เฉพาะบนคอมพิวเตอร์" เท่านั้น] --> */
+    @media (min-width: 768px) {
+        [data-testid="stSidebar"] {
+            min-width: 400px !important;
+            max-width: 400px !important;
+        }
     }
+    
     .main-title {
         font-size: 2.3rem;
         color: #4CAF50;
